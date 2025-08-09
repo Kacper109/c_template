@@ -21,6 +21,12 @@ test-debug: debug $(NAME_EXE)
 test-release: release $(NAME_EXE)
 	./$(NAME_EXE)
 
+clean:
+	git clean -Xfd
+
+update: clean
+	git pull
+
 debug: CFLAGS += $(CFLAGS_DEBUG)
 debug: $(OBJECTS)
 
@@ -32,12 +38,6 @@ $(BUILD_DIR):
 
 $(NAME_EXE): $(OBJECTS)
 	$(CC) $(BUILD_DIR)/* -o $(NAME_EXE)
-
-clean:
-	git clean -Xfd
-
-update: clean
-	git pull
 
 $(OBJECTS): $(BUILD_DIR)
 
