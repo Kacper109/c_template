@@ -36,6 +36,9 @@ $(NAME_EXE): $(OBJECTS)
 clean:
 	git clean -Xfd
 
+update: clean
+	git pull
+
 $(OBJECTS): $(BUILD_DIR)
 
 %.o: $(SRC_DIR)/%.c
