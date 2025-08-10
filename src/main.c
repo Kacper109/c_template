@@ -6,6 +6,6 @@ License is found in ./LICENSE
 #include <stdio.h>
 
 int main(void) {
-    printf("Hello C\n");
+    printf("Hello world");
     return 0;
 }
