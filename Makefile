@@ -1,6 +1,6 @@
 C_VERSION = c23
-CFLAGS = -I$(INCLUDE_DIR) -std=$(C_VERSION) -Wall -Werror -Wextra -Wpedantic -pedantic-errors -fsanitize=address,leak,undefined
-CFLAGS_DEBUG = -g3
+CFLAGS := -I$(INCLUDE_DIR) -std=$(C_VERSION) -Wall -Werror -Wextra -Wpedantic -pedantic-errors 
+CFLAGS_DEBUG = -g3 -fsanitize=address,leak,undefined
 CFLAGS_RELEASE = -O3
 
 BUILD_DIR = ./build
@@ -14,10 +14,10 @@ HEADERS = $(wildcard $(INCLUDE_DIR)/*.h)
 
 all: debug 
 
-test-debug: debug $(NAME_EXE)
-	./$(NAME_EXE)
+test-debug: debug run clean
+test-release: release run clean
 
-test-release: release $(NAME_EXE)
+run: $(NAME_EXE)
 	./$(NAME_EXE)
 
 clean:
@@ -26,17 +26,18 @@ clean:
 update: clean
 	git pull
 
+# TODO: Fix debug 
 debug: CFLAGS += $(CFLAGS_DEBUG)
-debug: $(OBJECTS)
+debug: $(OBJECTS) $(NAME_EXE)
 
 release: CFLAGS += $(CFLAGS_RELEASE)
-release: $(OBJECTS)
+release: $(OBJECTS) $(NAME_EXE)
 
 $(BUILD_DIR):
 	mkdir $(BUILD_DIR)
 
 $(NAME_EXE): $(OBJECTS)
-	$(CC) $(BUILD_DIR)/* -o $(NAME_EXE)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME_EXE)
 
 $(OBJECTS): $(BUILD_DIR)
 
