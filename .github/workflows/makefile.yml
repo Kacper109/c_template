@@ -23,11 +23,5 @@ jobs:
     - name: Test debug
       run: make test-debug
 
-    - name: clean
-      run: make clean
-
     - name: Test release
       run: make test-release
-
-    - name: clean
-      run: make clean
