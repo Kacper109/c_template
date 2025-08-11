@@ -14,8 +14,8 @@ HEADERS = $(wildcard $(INCLUDE_DIR)/*.h)
 
 all: debug 
 
-test-debug: debug run clean
-test-release: release run clean
+run-debug: debug run clean
+run-release: release run clean
 
 run: $(NAME_EXE)
 	./$(NAME_EXE)
@@ -43,4 +43,4 @@ $(OBJECTS): $(BUILD_DIR)
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-.PHONY: all test-debug test-release clean update debug release
+.PHONY: all run-debug run-release clean update debug release
