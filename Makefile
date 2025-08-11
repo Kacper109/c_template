@@ -13,7 +13,7 @@ OBJECTS = $(addprefix $(BUILD_DIR)/, $(notdir $(SOURCES:.c=.o)))
 HEADERS = $(wildcard $(INCLUDE_DIR)/*.h)
 
 all: debug 
-
+	
 run-debug: debug run clean
 run-release: release run clean
 

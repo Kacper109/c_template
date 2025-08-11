@@ -21,7 +21,7 @@ jobs:
         platform: x64
         
     - name: Test debug
-      run: make test-debug
+      run: make run-debug
 
     - name: Test release
-      run: make test-release
+      run: make run-release
