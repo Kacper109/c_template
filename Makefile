@@ -1,6 +1,6 @@
 C_VERSION := c23
 CFLAGS := -I$(INCLUDE_DIR) -std=$(C_VERSION) -Wall -Werror -Wextra -Wpedantic -pedantic-errors 
-CFLAGS_DEBUG := -g3 -fsanitize=undefined,leak
+CFLAGS_DEBUG := -g3 #-fsanitize=undefined,leak
 CFLAGS_RELEASE := -O3
 
 BUILD_DIR = ./build
